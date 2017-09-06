@@ -23,15 +23,19 @@ The backend interacts with the front end via a REST API endpoint served at: /api
 ## Frontend
 
 The frontend is simple single web page using vue.js and the vue-stash plugin. 
+
 Source files are located in: src/main/web
+
 The frontend is compiled to static resources via npm and can be built using the npm task: npm run build.
 
 ## Build Setup
 
 To run, either use the provided gradle wrapper and bootRun task on the command line with: ./gradlew bootRun
+
 Or launch the application from the Application.java main method.
 
-By default, the server will run on port 8080. External configuration for Mailgun and SendGrid API keys and logging can be found in src/main/resources/application.properties or overridden as required.
+External configuration for Mailgun and SendGrid API keys and logging can be found in src/main/resources/application.properties or overridden as required.
 
-To build a runnable JAR file, use: ./gradlew build. 
+To build a runnable JAR file, use: ./gradlew build.
+
 You can then run the JAR file with: java -jar build/libs/email-service-0.1.0.jar
