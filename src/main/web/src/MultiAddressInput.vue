@@ -29,6 +29,8 @@ export default {
       if (this.inputField !== '') {
         if (event) { event.preventDefault() }
 
+        //TODO: Given more time, this should be changed to an input field so that it can be edited
+        //      instead of having to be deleted and retyped in.
         this.emails.push({
           text: this.inputField
         })

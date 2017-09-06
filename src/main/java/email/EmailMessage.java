@@ -32,6 +32,9 @@ public class EmailMessage {
     @JsonProperty
     @NotEmpty
     private String content;
+    @JsonProperty
+    @NotNull
+    private Integer retryCount = 0;
     
     public EmailMessage() {
     }
@@ -82,5 +85,13 @@ public class EmailMessage {
 
     public void setContent(String content) {
         this.content = content;
+    }
+
+    public Integer getRetryCount() {
+        return retryCount;
+    }
+
+    public void setRetryCount(Integer retryCount) {
+        this.retryCount = retryCount;
     }
 }

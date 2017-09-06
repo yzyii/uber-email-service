@@ -170,5 +170,7 @@ public class EmailResourceTests {
         assertThat(response.getStatusCode()).isEqualTo(HttpStatus.OK);
     }
     
-    //TODO: Implement a complete end-to-end test via CountDownLatches. Not done here due to time constraints.
+    //Following test cases not done here due to time constraints
+    //TODO: Implement a complete end-to-end test via CountDownLatches.
+    //TODO: Implement RabbitMQ retry test via CountDownLatches.
 }

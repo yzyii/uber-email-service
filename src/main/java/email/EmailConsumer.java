@@ -13,6 +13,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.amqp.rabbit.annotation.RabbitListener;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.env.Environment;
 import org.springframework.stereotype.Component;
 
@@ -24,13 +25,17 @@ import org.springframework.stereotype.Component;
 @Component
 public abstract class EmailConsumer {
     
+    @Value("${max.retry}")
+    private int MAX_RETRIES;
+    
+    @Autowired
+    private RabbitTemplate rabbitTemplate;
+    
     protected final Logger log = LoggerFactory.getLogger(getClass());
     
     protected Client client;
     @Autowired
     protected Environment env;
-    @Autowired
-    private RabbitTemplate rabbitTemplate;
     
     /**
      * @return An initialised JAVAX Client with any required registered components. 
@@ -61,11 +66,20 @@ public abstract class EmailConsumer {
     public void receiveMessage(final EmailMessage message) {
         Response response = getRequestBuilder().post(createEntity(message));
         
+        /*TODO: Should identify message by a unique trackable identifier 
+        /*      and store failed messages into a store to be inspected later
+         *      instead of logging message subject.
+         */
         log.info(getClass().getSimpleName() + " - Sent: [" + message.getSubject() + "] Response: [(" + response.getStatus() + ") " + response.readEntity(String.class) + "]");
         
         if (!(response.getStatus() == Status.OK.getStatusCode() || response.getStatus() == Status.ACCEPTED.getStatusCode())) {
-            log.info(getClass().getSimpleName() + " - Requeuing: [" + message.getSubject() + "]");
-            rabbitTemplate.convertAndSend(Application.queueName, message);
+            if (message.getRetryCount() < MAX_RETRIES) {
+                log.info(getClass().getSimpleName() + " - Requeuing: [" + message.getSubject() + "]");
+                message.setRetryCount(message.getRetryCount() + 1);
+                rabbitTemplate.convertAndSend(Application.queueName, message);
+            } else {
+                log.error(getClass().getSimpleName() + " - Failed to send: [" + message.getSubject() + "]");
+            }
         }
     }
 }
