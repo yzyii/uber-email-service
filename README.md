@@ -11,7 +11,7 @@ The service contains a frontend and backend that accepts the necessary informati
 The application provides an abstraction between two different email service providers and can quickly failover to a different provider without affecting availability.
 
 The two providers implemented are:
-* [Mailgun](https://sendgrid.com/)
+* [Mailgun](https://www.mailgun.com/)
 * [SendGrid](https://sendgrid.com/)
 
 ## Backend
@@ -29,6 +29,8 @@ Source files are located in: src/main/web
 The frontend is compiled to static resources via npm and can be built using the npm task: npm run build.
 
 ## Build Setup
+
+In order to run the project, RabbitMQ server must be installed on the environment.
 
 To run, either use the provided gradle wrapper and bootRun task on the command line with: ./gradlew bootRun
 
