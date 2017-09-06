@@ -1,0 +1,17 @@
+{
+    "tos": [
+        "Alice <alice@gmail.com>",
+        "Bob <bob@gmail.com>"
+    ],
+    "ccs": [
+        "Carol <carol@gmail.com>",
+        "Dave <dave@gmail.com>"
+    ],
+    "bccs": [
+        "Eve <eve@gmail.com>",
+        "Frank <frank@gmail.com>"
+    ],
+    "from": "Grace <grace@gmail.com>",
+    "subject": "Jackdaws love my big sphinx of quartz.",
+    "content": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+}

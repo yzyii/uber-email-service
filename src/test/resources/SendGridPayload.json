@@ -1,0 +1,40 @@
+{
+    "personalizations": [
+        {
+            "to": [
+                {
+                    "email": "Alice <alice@gmail.com>"
+                },
+                {
+                    "email": "Bob <bob@gmail.com>"
+                }
+            ],
+            "cc": [
+                {
+                    "email": "Carol <carol@gmail.com>"
+                },
+                {
+                    "email": "Dave <dave@gmail.com>"
+                }
+            ],
+            "bcc": [
+                {
+                    "email": "Eve <eve@gmail.com>"
+                },
+                {
+                    "email": "Frank <frank@gmail.com>"
+                }
+            ]
+        }
+    ],
+    "from": {
+        "email": "Grace <grace@gmail.com>"
+    },
+    "subject": "Jackdaws love my big sphinx of quartz.",
+    "content": [
+        {
+            "type": "text/plain",
+            "value": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+        }
+    ]
+}
