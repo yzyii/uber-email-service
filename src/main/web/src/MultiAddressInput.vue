@@ -8,7 +8,13 @@
         </li>
       </ul>
       <div class="stretch">
-        <input @blur="addEmail" @keydown.enter="addEmail" @keydown.tab="addEmail($event)" @keydown.delete="deleteEmail" v-model="inputField"/>
+        <input @blur="addEmail"
+               @keydown.enter="addEmail"
+               @keydown.tab="addEmail($event)"
+               @keydown.188="addEmail($event)"
+               @keydown.space="addEmail($event)"
+               @keydown.delete="deleteEmail"
+               v-model="inputField"/>
       </div>
     </div>
   </div>
@@ -27,8 +33,8 @@ export default {
   methods: {
     addEmail(event) {
       if (this.inputField !== '') {
-        if (event) { event.preventDefault() }
-
+        if (event) { event.preventDefault(); }
+        
         //TODO: Given more time, this should be changed to an input field so that it can be edited
         //      instead of having to be deleted and retyped in.
         this.emails.push({
@@ -43,6 +49,8 @@ export default {
         }
 
         this.inputField = '';
+      } else if (event && event.code !== 'Tab') {
+        event.preventDefault();
       }
     },
     deleteEmail(index) {
