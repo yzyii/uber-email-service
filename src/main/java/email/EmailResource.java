@@ -66,13 +66,13 @@ public class EmailResource {
         Set<String> duplicateEmailsSet = new HashSet<>();
         
         try {
-        	validate(emailMessage.getTos(), duplicateEmailsSet);
-        	validate(emailMessage.getCcs(), duplicateEmailsSet);
-        	validate(emailMessage.getBccs(), duplicateEmailsSet);
+            validate(emailMessage.getTos(), duplicateEmailsSet);
+            validate(emailMessage.getCcs(), duplicateEmailsSet);
+            validate(emailMessage.getBccs(), duplicateEmailsSet);
             validate(emailMessage.getFrom());
         } catch (AddressException e) {
             error = e.getMessage();
-        	log.info("Rejected email: " + e.getMessage());
+            log.info("Rejected email: " + e.getMessage());
         }
         
         return error;
@@ -87,12 +87,12 @@ public class EmailResource {
      */
     private void validate(List<String> emails, Set<String> emailAddressSet) throws AddressException {
         for (String email : emails) {
-        	validate(email);
-        	if (!emailAddressSet.contains(email)) {
-        		emailAddressSet.add(email);
-        	} else {
-        		throw new AddressException("Duplicate email detected among addressees.");
-        	}
+            validate(email);
+            if (!emailAddressSet.contains(email)) {
+                emailAddressSet.add(email);
+            } else {
+                throw new AddressException("Duplicate email detected among addressees.");
+            }
         }
     }
     

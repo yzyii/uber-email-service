@@ -49,7 +49,7 @@ public class SendGridConsumer extends EmailConsumer {
         payload.getPersonalizations().add(personalization);
         
         if (message.getTos().size() > 0) {
-        	personalization.setTo(new ArrayList<>());
+            personalization.setTo(new ArrayList<>());
         }
         for (String toString : message.getTos()) {
             EmailAddress to = new EmailAddress();
@@ -57,7 +57,7 @@ public class SendGridConsumer extends EmailConsumer {
             personalization.getTo().add(to);
         }
         if (message.getCcs().size() > 0) {
-        	personalization.setCc(new ArrayList<>());
+            personalization.setCc(new ArrayList<>());
         }
         for (String ccString : message.getCcs()) {
             EmailAddress cc = new EmailAddress();
@@ -65,7 +65,7 @@ public class SendGridConsumer extends EmailConsumer {
             personalization.getCc().add(cc);
         }
         if (message.getBccs().size() > 0) {
-        	personalization.setBcc(new ArrayList<>());
+            personalization.setBcc(new ArrayList<>());
         }
         for (String bccString : message.getBccs()) {
             EmailAddress bcc = new EmailAddress();

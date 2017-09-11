@@ -18,8 +18,8 @@ import org.springframework.messaging.handler.annotation.support.DefaultMessageHa
 @EnableRabbit
 public class Application {
     
-	public final static String queueName = "email-service";
-	
+    public final static String queueName = "email-service";
+    
     @Bean
     public Queue getQueue() {
         return new Queue(queueName, true);
